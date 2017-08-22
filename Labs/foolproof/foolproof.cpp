@@ -15,7 +15,7 @@ void menu() {
      << "\n\t  1 - Enter a line of text"
      << "\n\t  2 - Enter a text phrase"
      << "\n\t  3 - Enter an integer number"
-     << "\n\t  4 - Enter a flaoat number"
+     << "\n\t  4 - Enter a float number"
      << "\n\t  q - quit"
      << "\n\t  Enter your choice: ";
 }
