@@ -11,19 +11,21 @@
 ///*****************************************************************************
 #include <iostream>
 #include <iomanip>
-using namespace std;
-int main() {
-///*************************CONSTANTS*******************************************
-const int NUM_GRADES = 5;
-const int NUM_STUDENTS = 5;
-double test_score_1[4],test_score_2[4],test_score_3[4],test_score_4[4],test_score_5[4];
-
 ///*************************FUNCTION PROTO CODE BLOCK***************************
+using namespace std;
 void dropLowestScore();
 double returnAverage(double* test_score_1,double* test_score_2, double* test_score_3,double* test_score_4,double* test_score_5);
 void displayGrade();
 string askUserNames(string student_names[]);
 void format();
+char letterGrade(double score);
+int main() {
+///*************************CONSTANTS*******************************************
+const int NUM_GRADES = 5;
+const int NUM_STUDENTS = 5;
+double test_score_1[NUM_GRADES],test_score_2[NUM_GRADES],test_score_3[NUM_GRADES],test_score_4[NUM_GRADES],test_score_5[NUM_GRADES];
+
+
 ///*************************DATA CODE BLOCK*************************************
 string student_names[NUM_STUDENTS];
 char letter_grade[NUM_GRADES] = {'A','B','C','D','F'};
@@ -31,22 +33,21 @@ char letter_grade[NUM_GRADES] = {'A','B','C','D','F'};
 ///*************************Processing******************************************
 askUserNames(student_names);
 returnAverage(test_score_1,test_score_2,test_score_3,test_score_4,test_score_5);
-cout << "Student #1: " << endl;
+cout << "Student #1: " << student_names[0] << endl;
 format();
-cout << student_names[0] << endl;
 cout << "Test score #1 for " << student_names[0] << " : " << test_score_1[0] <<  endl;
 cout << "Test score #2 for " << student_names[0] << " : " << test_score_1[1] <<  endl;
 cout << "Test score #3 for " << student_names[0] << " : " << test_score_1[2] <<  endl;
 cout << "Test score #4 for " << student_names[0] << " : " << test_score_1[3] <<  endl;
 cout << "Test score #5 for " << student_names[0] << " : " << test_score_1[4] <<  endl;
-cout << "Student #2: " << endl;
+cout << "Student #2: " << student_names[0] << endl;
 format();
 cout << "Test score #1 for " << student_names[1] << " : " << test_score_2[0] <<  endl;
 cout << "Test score #2 for " << student_names[1] << " : " << test_score_2[1] <<  endl;
 cout << "Test score #3 for " << student_names[1] << " : " << test_score_2[2] <<  endl;
 cout << "Test score #4 for " << student_names[1] << " : " << test_score_2[3] <<  endl;
 cout << "Test score #5 for " << student_names[1] << " : " << test_score_2[4] <<  endl;
-cout << "Student #3: " << endl;
+cout << "Student #3: " << student_names[0] << endl;
 format();
 cout << "Test score #1 for " << student_names[2] << " : " << test_score_3[0] <<  endl;
 cout << "Test score #2 for " << student_names[2] << " : " << test_score_3[1] <<  endl;
@@ -138,4 +139,18 @@ double returnAverage(double test_score_1[], double test_score_2[], double test_s
 void format(){
 cout << setfill('_') << setw(80) << endl;
 cout << " " << endl;
+}
+char letterGrade(double score)
+{
+
+    if(score >= 90 && score <=100)
+        return 'A';
+     else if(score >= 80 && score <90)
+         return 'B';
+     else if(score >= 70 && score <80)
+          return 'C';
+     else if(score >= 60 && score <70)
+          return 'D';
+     else
+          return 'F';
 }
