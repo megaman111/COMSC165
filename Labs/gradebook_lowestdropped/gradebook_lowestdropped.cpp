@@ -14,7 +14,8 @@
 ///*************************FUNCTION PROTO CODE BLOCK***************************
 using namespace std;
 void dropLowestScore();
-double returnAverage(double* test_score_1,double* test_score_2, double* test_score_3,double* test_score_4,double* test_score_5);
+double averageScore(double a, double b, double c, double d, double e);
+double returnScores(double* test_score_1,double* test_score_2, double* test_score_3,double* test_score_4,double* test_score_5);
 void displayGrade();
 string askUserNames(string student_names[]);
 void format();
@@ -28,11 +29,10 @@ double test_score_1[NUM_GRADES],test_score_2[NUM_GRADES],test_score_3[NUM_GRADES
 
 ///*************************DATA CODE BLOCK*************************************
 string student_names[NUM_STUDENTS];
-char letter_grade[NUM_GRADES] = {'A','B','C','D','F'};
 
 ///*************************Processing******************************************
 askUserNames(student_names);
-returnAverage(test_score_1,test_score_2,test_score_3,test_score_4,test_score_5);
+returnScores(test_score_1,test_score_2,test_score_3,test_score_4,test_score_5);
 cout << "Student #1: " << student_names[0] << endl;
 format();
 cout << "Test score #1 for " << student_names[0] << " : " << test_score_1[0] <<  endl;
@@ -40,6 +40,8 @@ cout << "Test score #2 for " << student_names[0] << " : " << test_score_1[1] << 
 cout << "Test score #3 for " << student_names[0] << " : " << test_score_1[2] <<  endl;
 cout << "Test score #4 for " << student_names[0] << " : " << test_score_1[3] <<  endl;
 cout << "Test score #5 for " << student_names[0] << " : " << test_score_1[4] <<  endl;
+cout << "Average score for " << student_names[0] << " : " << averageScore(test_score_1[0],test_score_1[1],test_score_1[2],test_score_1[3],test_score_1[4]) << endl;
+cout << "Letter Grade for " << student_names[0] << " : " << letterGrade(averageScore(test_score_1[0],test_score_1[1],test_score_1[2],test_score_1[3],test_score_1[4])) << endl;
 cout << "Student #2: " << student_names[0] << endl;
 format();
 cout << "Test score #1 for " << student_names[1] << " : " << test_score_2[0] <<  endl;
@@ -47,6 +49,8 @@ cout << "Test score #2 for " << student_names[1] << " : " << test_score_2[1] << 
 cout << "Test score #3 for " << student_names[1] << " : " << test_score_2[2] <<  endl;
 cout << "Test score #4 for " << student_names[1] << " : " << test_score_2[3] <<  endl;
 cout << "Test score #5 for " << student_names[1] << " : " << test_score_2[4] <<  endl;
+cout << "Average score for " << student_names[1] << " : " << averageScore(test_score_2[0],test_score_2[1],test_score_2[2],test_score_2[3],test_score_2[4]) << endl;
+cout << "Letter Grade for " << student_names[1] << " : " << letterGrade(averageScore(test_score_2[0],test_score_2[1],test_score_2[2],test_score_2[3],test_score_2[4])) << endl;
 cout << "Student #3: " << student_names[0] << endl;
 format();
 cout << "Test score #1 for " << student_names[2] << " : " << test_score_3[0] <<  endl;
@@ -54,6 +58,8 @@ cout << "Test score #2 for " << student_names[2] << " : " << test_score_3[1] << 
 cout << "Test score #3 for " << student_names[2] << " : " << test_score_3[2] <<  endl;
 cout << "Test score #4 for " << student_names[2] << " : " << test_score_3[3] <<  endl;
 cout << "Test score #5 for " << student_names[2] << " : " << test_score_3[4] <<  endl;
+cout << "Average score for " << student_names[2] << " : " << averageScore(test_score_3[0],test_score_3[1],test_score_3[2],test_score_3[3],test_score_3[4]) << endl;
+cout << "Letter Grade for " << student_names[2] << " : " << letterGrade(averageScore(test_score_3[0],test_score_3[1],test_score_3[2],test_score_3[3],test_score_3[4])) << endl;
 cout << "Student #4: " << endl;
 format();
 cout << "Test score #1 for " << student_names[3] << " : " << test_score_4[0] <<  endl;
@@ -61,6 +67,8 @@ cout << "Test score #2 for " << student_names[3] << " : " << test_score_4[1] << 
 cout << "Test score #3 for " << student_names[3] << " : " << test_score_4[2] <<  endl;
 cout << "Test score #4 for " << student_names[3] << " : " << test_score_4[3] <<  endl;
 cout << "Test score #5 for " << student_names[3] << " : " << test_score_4[4] <<  endl;
+cout << "Average score for " << student_names[3] << " : " << averageScore(test_score_4[0],test_score_4[1],test_score_4[2],test_score_4[3],test_score_4[4]) << endl;
+cout << "Letter Grade for " << student_names[3] << " : " << letterGrade(averageScore(test_score_4[0],test_score_4[1],test_score_4[2],test_score_4[3],test_score_4[4])) << endl;
 cout << "Student #5: " << endl;
 format();
 cout << "Test score #1 for " << student_names[4] << " : " << test_score_5[0] <<  endl;
@@ -68,72 +76,52 @@ cout << "Test score #2 for " << student_names[4] << " : " << test_score_5[1] << 
 cout << "Test score #3 for " << student_names[4] << " : " << test_score_5[2] <<  endl;
 cout << "Test score #4 for " << student_names[4] << " : " << test_score_5[3] <<  endl;
 cout << "Test score #5 for " << student_names[4] << " : " << test_score_5[4] <<  endl;
+cout << "Average score for " << student_names[4] << " : " << averageScore(test_score_5[0],test_score_5[1],test_score_5[2],test_score_5[3],test_score_5[4]) << endl;
+cout << "Letter Grade for " << student_names[4] << " : " << letterGrade(averageScore(test_score_5[0],test_score_5[1],test_score_5[2],test_score_5[3],test_score_5[4])) << endl;
 }
 ///*************************FUNCTION CODE BLOCK*********************************
 string askUserNames(string student_names[]){
-    cout << "Enter name of student #1: ";
-    getline(cin, student_names[0]);
-    cout << "Enter name of student #2: ";
-    getline(cin, student_names[1]);
-    cout << "Enter name of student #3: ";
-    getline(cin, student_names[2]);
-    cout << "Enter name of student #4: ";
-    getline(cin, student_names[3]);
-    cout << "Enter name of student #5: ";
-    getline(cin, student_names[4]);
+    for(int i = 0; i<5; i++){
+    cout << "Enter name of student #" << (i+1) << ": ";
+    getline(cin, student_names[i]);
+    }
     return student_names[0,1,2,3,4];
 }
-double returnAverage(double test_score_1[], double test_score_2[], double test_score_3[], double test_score_4[], double test_score_5[]){
-    cout << "Enter Test Score 1 for Student #1:";
-    cin >> test_score_1[0];
-    cout << "Enter Test Score 2 for Student #1:";
-    cin >> test_score_1[1];
-    cout << "Enter Test Score 3 for Student #1:";
-    cin >> test_score_1[2];
-    cout << "Enter Test Score 4 for Student #1:";
-    cin >> test_score_1[3];
-    cout << "Enter Test Score 5 for Student #1:";
-    cin >> test_score_1[4];
-    cout << "Enter Test Score 1 for Student #2:";
-    cin >> test_score_2[0];
-    cout << "Enter Test Score 2 for Student #2:";
-    cin >> test_score_2[1];
-    cout << "Enter Test Score 3 for Student #2:";
-    cin >> test_score_2[2];
-    cout << "Enter Test Score 4 for Student #2:";
-    cin >> test_score_2[3];
-    cout << "Enter Test Score 5 for Student #2:";
-    cin >> test_score_2[4];
-    cout << "Enter Test Score 1 for Student #3:";
-    cin >> test_score_3[0];
-    cout << "Enter Test Score 2 for Student #3:";
-    cin >> test_score_3[1];
-    cout << "Enter Test Score 3 for Student #3:";
-    cin >> test_score_3[2];
-    cout << "Enter Test Score 4 for Student #3:";
-    cin >> test_score_3[3];
-    cout << "Enter Test Score 5 for Student #3:";
-    cin >> test_score_3[4];
-    cout << "Enter Test Score 1 for Student #4:";
-    cin >> test_score_4[0];
-    cout << "Enter Test Score 2 for Student #4:";
-    cin >> test_score_4[1];
-    cout << "Enter Test Score 3 for Student #4:";
-    cin >> test_score_4[2];
-    cout << "Enter Test Score 4 for Student #4:";
-    cin >> test_score_4[3];
-    cout << "Enter Test Score 5 for Student #4:";
-    cin >> test_score_4[4];
-    cout << "Enter Test Score 1 for Student #5:";
-    cin >> test_score_5[0];
-    cout << "Enter Test Score 2 for Student #5:";
-    cin >> test_score_5[1];
-    cout << "Enter Test Score 3 for Student #5:";
-    cin >> test_score_5[2];
-    cout << "Enter Test Score 4 for Student #5:";
-    cin >> test_score_5[3];
-    cout << "Enter Test Score 5 for Student #5:";
-    cin >> test_score_5[4];
+double returnScores(double test_score_1[], double test_score_2[], double test_score_3[], double test_score_4[], double test_score_5[]){
+    for(int i = 0; i<5; i++){
+        do{
+    cout << "Enter Test Score #" << (i+1) << " for Student #1: ";
+    cin >> test_score_1[i];
+    }while(test_score_1[i]<0||test_score_1[i]>100);
+        }
+ 
+    for(int i = 0; i<5; i++){
+        do{
+    cout << "Enter Test Score #" << (i+1) << " for Student #2: ";
+    cin >> test_score_2[i];
+    }while(test_score_2[i]<0||test_score_2[i]>100);
+        }
+ 
+    for(int i = 0; i<5; i++){
+        do{
+    cout << "Enter Test Score #" << (i+1) << " for Student #3: ";
+    cin >> test_score_3[i];
+    }while(test_score_3[i]<0||test_score_3[i]>100);
+        }
+        
+     for(int i = 0; i<5; i++){
+         do{
+    cout << "Enter Test Score #" << (i+1) << " for Student #4: ";
+    cin >> test_score_4[i];
+    }while(test_score_4[i]<0||test_score_4[i]>100);
+        }
+        
+    for(int i = 0; i<5; i++){
+        do{
+    cout << "Enter Test Score #" << (i+1) << " for Student #5: ";
+    cin >> test_score_5[i];
+    }while(test_score_5[i]<0||test_score_5[i]>100);
+    }
     return(test_score_1[0,1,2,3,4],test_score_2[0,1,2,3,4],test_score_3[0,1,2,3,4],test_score_4[0,1,2,3,4],test_score_5[0,1,2,3,4]);
 }
 void format(){
@@ -153,4 +141,7 @@ char letterGrade(double score)
           return 'D';
      else
           return 'F';
+}
+double averageScore(double a, double b, double c, double d, double e){
+    return (a+b+c+d+e)/(5);
 }
