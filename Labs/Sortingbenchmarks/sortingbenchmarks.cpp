@@ -1,9 +1,10 @@
 ///****************************************************************************
-/// Description: This is a template!
+/// Description: Sorts and counts swaps and comparisons for bubble and selection
+/// Sorting
 /// Author: Joseph Gertler
 /// COMSC 165 Section 3020
-/// Date: ___DATE___
-/// Status : Incomplete 
+/// Date: 9/4/2017
+/// Status : Complete
 ///****************************************************************************
 #include <iostream>
 #include <iomanip>
@@ -105,3 +106,8 @@ void format(){
 cout << setfill('_') << setw(80) << endl;
 cout << " " << endl;
 }
+//(2C+3M)n Where c is complexity and M is memory?
+//Best case for bubble sort: O(n) Example: {0,0,0,0,0,0,0,0,0,0}, or saying it's already sorted
+//Worst case for bubble sort: O(n^2) Example: {0,2,1,0,0,0,0,0,0,0}, or saying it's not sorted yet.
+//Best case for selection sort: O(n^2) Example: {0,2,1,0,0,0,0,0,0,0}, or saying it's not sorted yet, but it needs to pass through twice regardless cause of nested loops
+//Worst case for selection sort: O(n^2)Example: {0,2,1,0,0,0,0,0,0,0}, or saying it's not sorted yet, but it needs to pass through twice regardless cause of nested loops
