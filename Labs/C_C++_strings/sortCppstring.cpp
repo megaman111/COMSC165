@@ -1,9 +1,9 @@
 ///****************************************************************************
-/// Description: This is a template!
+/// Description: This program sorts and delimits C++ Strings in Ascending and Descending orders.
 /// Author: Joseph Gertler
 /// COMSC 165 Section 3020
 /// Date: ___DATE___
-/// Status : Incomplete 
+/// Status : Complete  
 ///****************************************************************************
 #include <algorithm>
 #include <iostream>
