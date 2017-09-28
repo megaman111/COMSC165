@@ -11,7 +11,6 @@
 #include <string>
 #include <sstream>
 #include <vector>
-#include <map>
 using namespace std;
 int maxstudents;
 
@@ -46,80 +45,7 @@ int main() {
         break;
     }
   }
-      //for(int j = 0; j<maxstudents; j++)
-    //cout << movies[j] << " ";
-    
-    double sum;
-    double average, minimum=(int)INFINITY, maximum=-(int)INFINITY, median;
-    map<int,int>modes;
-    vector<int>data;
-    int count,mxmode=0;
-    // initialise
-    sum = 0.0;
-    count = 0;
-
-    while (cin >> movies[i])
-    {
-        // process value
-        sum += movies[i];
-        count++;
-        if (movies[i] > maximum)
-            maximum = movies[i];
-        else if (movies[i] < minimum)
-            minimum = movies[i];
-
-        modes[ movies[i] ]++;
-        mxmode = max(mxmode, modes[movies[i]]);
-        data.push_back(movies[i]);
-    }
-    if (count == 0)
-        cout << "No data entry" << endl;
-    else
-    {
-        average = sum / count;
-
-        sort(data.begin(), data.end());
-
-        if(data.size()%2==0) median = ( data[ data.size()/2 - 1 ] + data[ data.size()/2 ] )/2.0;
-        else median = data[ data.size()/2 ];
-
-        cout << "There were " << count << " numbers" << endl;
-        cout << "Average was " << average << endl;
-        cout << "Minimum was " << minimum << endl;
-        cout << "Maximum was " << maximum << endl;
-        cout << "Median was " << median << endl;
-        cout << "Median was";
-
-        for (auto &x: modes)
-            if(x.second == mxmode) cout<<" "<<x.first;
-
-        cout<<" ("<<mxmode<<")" << endl;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+      for(int j = 0; j<maxstudents; j++)
+    cout << movies[j] << " ";
 }
     
