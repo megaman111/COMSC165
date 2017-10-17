@@ -333,6 +333,7 @@ int main( ) {
                     cout << "Please select another option from the menu: ";                     
                  }
             }
+            break;
             
             case 5:
                 cout << fixed << showpoint << setprecision(2)
@@ -366,6 +367,7 @@ int main( ) {
                     cout << "Last Payment Date" << c3.last_pay << endl;                    
                     format();
                     cout << "Please select another option from the menu: ";
+                    break;
             case 6:
                 cout << "Which Customer Would you like to search for? [1,2,3]:";
                 cin >> customer;
@@ -410,11 +412,12 @@ int main( ) {
                     cout << "Please select another option from the menu: ";
              }
         }
-    } while(choice !=7);
+    } 
+}
+}
+}
+    while(choice != 7);
     cout << "Bye :)";
-}
-}
-}
 }
 void format(){
 cout << setfill('_') << setw(80) << endl;
