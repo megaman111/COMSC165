@@ -9,6 +9,7 @@
 #include <queue>
 
 #include <stack>
+#include <map>
 
 using namespace std;
 int step = 0;
@@ -54,7 +55,12 @@ void postfix::parser()
 {
 
 char c;
-
+map <char, int> opMap;
+opMap['-'] = 1;
+opMap['+'] = 1;
+opMap['*'] = 2;
+opMap['/'] = 2;
+opMap['^'] = 3;
 while(!postfixQ.empty())
 
 {
@@ -90,7 +96,7 @@ else
 {//pop the operator and call CALCULATION to evaluate
 
 char Operator=opStack.top();
-
+//if(Operator >
 //cout<<endl<<Operator;
 
 opStack.pop();
