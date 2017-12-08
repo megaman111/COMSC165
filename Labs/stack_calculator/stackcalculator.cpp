@@ -96,7 +96,9 @@ else
 {//pop the operator and call CALCULATION to evaluate
 
 char Operator=opStack.top();
-//if(Operator >
+if(opMap[Operator] < opMap[c]){
+opStack.push(Operator);
+}
 //cout<<endl<<Operator;
 
 opStack.pop();
