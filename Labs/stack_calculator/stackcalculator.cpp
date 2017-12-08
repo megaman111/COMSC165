@@ -181,12 +181,6 @@ n3 = n2 * n1 ;
 
 break ;
 
-case '%' :
-
-n3 = n2 % n1 ;
-
-break ;
-
 case '^' :
 
 n3 = pow ( n2 , n1 ) ;
