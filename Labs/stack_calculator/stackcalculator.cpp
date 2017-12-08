@@ -1,68 +1,228 @@
 #include <iostream>
-#include <string>
-#include <cstdlib>
-#include <cmath>
+
+#include <math.h>
+
+#include <string.h>
+
+#include <ctype.h>
+
+#include <queue>
+
 #include <stack>
-#include <cctype>
+
 using namespace std;
-
-int calc(char token, int num1, int num2);
-
-bool IsOperator(char C);
-
-bool IsNumericDigit(char C);
-
-
-int main() {
+int step = 0;
+class postfix{
     
-    string postfix;
-    char token;
-    while(true) {
-        cout << "\nEnter a postfix expression, q to quit: ";
-        getline(cin, postfix);
-        if(postfix == "q") break;
-        cout << "\nPostfix => " << postfix << endl;
+private :
+queue<char> postfixQ;
+stack <char> opStack;
+stack <int> numberStack;
+public :
 
-        // calculate Postfix
-        deque<char>postfixQueue;
-        for(auto item:postfix)postfixQueue.push_back(item);
-        stack<int> stk; // operands
-        int num1, num2, result, step = 1;
-        while( !postfixQueue.empty() ) {
-        char head = prefixQueue.front();
-        if (isNumeric(head)){
-            //foo();
-        } 
-        else if (isOperator(head)){
-          //bar();  
-        } 
-            
-        }// while( !postfixQueue.empty() )
-    }//while(true)
-}//main
+//placing expression into Queue
 
+postfix(char postfixExp[] ){
 
-int calc(char token, int num1, int num2){
+for(int i=0;i<strlen(postfixExp);i++){
 
+cout<<postfixExp[i];
+postfixQ.push(postfixExp[i]);
 
 }
 
+parser();
 
-bool IsOperator(char C){
-    
-	if(C == '+' || C == '-' || C == '*' || C == '/' || C == '^')
-		return true;
+    }
 
-	return false; //returns false if none of the operators are found in the characters.
-	
+//parser to split the expression char by char
+
+void parser();
+
+//perform mathmatical operations
+
+void CALCULATION(char Operator) ;
+
+void showResult( ) ;
+
+} ;
+
+//parser to split the expression char by char
+
+void postfix::parser()
+
+{
+
+char c;
+
+while(!postfixQ.empty())
+
+{
+
+c=postfixQ.front();
+
+postfixQ.pop();
+
+//if digit push to number stack
+
+if(isdigit(c))
+
+{
+
+numberStack.push(c-'0');
+
 }
 
+else //operator
 
-bool IsNumericDigit(char C) {
-    
-	if(C >= '0' && C <= '9') return true;
-	return false; //returns false if character is not a numeric digit.
-	
+{
+
+if(opStack.empty())
+
+{
+
+opStack.push(c);
+
 }
 
-//https://gist.github.com/mycodeschool/7702441
+else
+
+{//pop the operator and call CALCULATION to evaluate
+
+char Operator=opStack.top();
+
+//cout<<endl<<Operator;
+
+opStack.pop();
+
+CALCULATION(Operator);
+
+opStack.push(c);
+
+}
+
+}
+
+}
+
+if(postfixQ.empty())
+
+{
+
+char Operator=opStack.top();
+
+opStack.pop();
+
+do{
+
+CALCULATION(Operator);
+
+}while(!opStack.empty());
+
+showResult();
+
+}
+
+}
+
+void postfix :: CALCULATION(char Operator )
+
+{
+
+int n1, n2, n3 ;
+
+//pop top 2 elements from number stack
+
+n2 = numberStack.top() ;
+
+numberStack.pop();
+
+n1 = numberStack.top() ;
+
+numberStack.pop();
+
+cout<<endl<<"Step "<< step++ << " : " << n2 <<" "<<Operator<<" "<< n1;
+
+//perform calculation , based on the operator
+
+switch ( Operator )
+
+{
+
+case '+' :
+
+n3 = n2 + n1 ;
+
+break ;
+
+case '-' :
+
+n3 = n2 - n1 ;
+
+break ;
+
+case '/' :
+
+n3 = n2 / n1 ;
+
+break ;
+
+case '*' :
+
+n3 = n2 * n1 ;
+
+break ;
+
+case '%' :
+
+n3 = n2 % n1 ;
+
+break ;
+
+case '^' :
+
+n3 = pow ( n2 , n1 ) ;
+
+break ;
+
+default :
+
+cout << "Unknown operator" ;
+
+exit ( 1 ) ;
+
+}
+
+//push the result in numberStack
+
+numberStack.push ( n3 ) ;
+
+}
+
+void postfix :: showResult( )
+
+{
+
+cout <<endl<< "Result of : " << numberStack.top() ;
+
+}
+
+int main( )
+
+{
+
+while(true){
+
+char postfixExp[50] ;
+
+cout << "\nEnter postfix expression : " ;
+
+cin.getline ( postfixExp, 50 ) ;
+
+postfix p(postfixExp);
+
+}
+
+return 0;
+
+}
