@@ -1,6 +1,6 @@
-#ifndef NUMBERLIST_H
-#define NUMBERLIST_h
 #include <iostream>
+//#include <list>
+#include <vector>
 using namespace std;
 
 #include <string>
@@ -25,6 +25,7 @@ public:
     bool deHead(double &);
     bool deTail(double &);
     void display() const;
+    void reverse();
     std::string toString() const;
 };
 
@@ -102,13 +103,25 @@ void NumberList::append(double num) {
 }
 
 void NumberList::display() const {
-    if(!head) return;
+    if(!head){
+        cout << "\n********nothing********\n";
+         return;
+    }
     Node *p = head;
     while(p->next) {
         std::cout << p->value << ", ";
         p=p->next;
     }
     std::cout << p->value << std::endl;
+}
+
+
+void NumberList::reverse(){
+    if(!head) return;
+    double headValue;
+    this->deHead(headValue);
+    this->reverse();
+    this->append(headValue);
 }
 
 std::string NumberList::toString() const {
@@ -126,37 +139,27 @@ std::string NumberList::toString() const {
 
 
 int main() {
+  vector<double> 
+        first {1.1, 2.3, 3.3, 4.5, 5.5, 6.7, 7.7, 8.9, 9.9},
+        second {2.3, 4.5, 6.7, 8.9};
     NumberList list;
     double num;
-    list.append(2.5);
-    list.append(7.9);
-    list.append(12.6);
-    list.display();
-    list.insert(4.3);
-    list.insert(11.11);
-    list.insert(13.13);
-    list.display();
-    list.remove(7.9);
-    list.remove(2.5);
-    list.remove(13.13);
+    for(auto n:first) list.append(n);
+    cout << "The list:\n\t";
     list.display();
 
-    while(list.deHead(num)) {
-        cout << " X " << num << "\n";
-        list.display();
+    cout << "Removing the following numbers:\n\t";
+    bool begin = true;
+    for(auto n:second) {
+        list.remove(n);
+        if(begin) begin = false;
+        else cout << ", ";
+        cout << n;
     }
+    cout << "\nThe list:\n\t";
     list.display();
-    
-    list.append(32.5);
-    list.append(37.9);
-    list.append(112.6);
-    // list.display(); // nothing happened
-    
-    while(list.deTail(num)) {
-        cout << " X " << num << endl;
-        list.display();
-    }
-    // list.display(); // nothing happened
 
+    cout << "The reversed list:\n\t";
+    list.reverse();
+    list.display();
 }
-#endif
