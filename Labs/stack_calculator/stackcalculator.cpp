@@ -10,6 +10,7 @@
 
 #include <stack>
 #include <map>
+#include <deque>
 
 using namespace std;
 int step = 1;
@@ -108,7 +109,7 @@ CALCULATION(Operator);
 
 }
 
-if(postfixQ.empty())
+if(!postfixQ.empty())
 
 {
 
@@ -157,7 +158,7 @@ break ;
 
 case '-' :
 
-n3 = n2 - n1 ;
+n3 = n1 - n2 ;
 
 break ;
 
@@ -175,7 +176,7 @@ break ;
 
 case '^' :
 
-n3 = pow ( n2 , n1 ) ;
+n3 = pow ( n1 , n2 ) ;
 
 break ;
 
@@ -190,7 +191,7 @@ exit ( 1 ) ;
 //push the result in numberStack
 
 numberStack.push ( n3 ) ;
-
+cout << " = " << n3;
 }
 
 void postfix :: showResult( )
@@ -205,7 +206,7 @@ int main( )
 
 {
 
-
+while(true){
 char postfixExp[50] ;
 
 cout << "\nEnter postfix expression : " ;
@@ -214,7 +215,7 @@ cin.getline ( postfixExp, 50 ) ;
 
 postfix p(postfixExp);
 
-
+}
 
 //return 0;
 
