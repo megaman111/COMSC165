@@ -12,9 +12,8 @@
 #include <map>
 
 using namespace std;
-int step = 0;
+int step = 1;
 class postfix{
-    
 private :
 queue<char> postfixQ;
 stack <char> opStack;
@@ -54,16 +53,14 @@ void postfix::parser()
 
 {
 
-char c;
+char c; // front token
 map <char, int> opMap;
 opMap['-'] = 1;
 opMap['+'] = 1;
 opMap['*'] = 2;
 opMap['/'] = 2;
 opMap['^'] = 3;
-while(!postfixQ.empty())
-
-{
+while(!postfixQ.empty()){
 
 c=postfixQ.front();
 
@@ -79,35 +76,33 @@ numberStack.push(c-'0');
 
 }
 
-else //operator
+else{ //operator
 
-{
-
-if(opStack.empty())
-
-{
-
+if(opStack.empty()){
+    
 opStack.push(c);
 
 }
-
-else
-
-{//pop the operator and call CALCULATION to evaluate
+else{//pop the operator and call CALCULATION to evaluate
 
 char Operator=opStack.top();
-if(opMap[Operator] < opMap[c]){
-opStack.push(Operator);
 }
+char Operator=opStack.top();
+if(opMap[Operator] < opMap[c]){
+postfixQ.pop();
+opStack.push(c);
+}
+else{
+opStack.pop();
+CALCULATION(Operator);
+}
+
 //cout<<endl<<Operator;
 
-opStack.pop();
+//CALCULATION(Operator);
 
-CALCULATION(Operator);
+//opStack.push(c);
 
-opStack.push(c);
-
-}
 
 }
 
@@ -133,7 +128,7 @@ showResult();
 
 }
 
-void postfix :: CALCULATION(char Operator )
+void postfix :: CALCULATION(char Operator)
 
 {
 
@@ -148,14 +143,11 @@ numberStack.pop();
 n1 = numberStack.top() ;
 
 numberStack.pop();
-
-cout<<endl<<"Step "<< step++ << " : " << n2 <<" "<<Operator<<" "<< n1;
+cout<<endl<<"Step "<< step++ << " : " << n1 << " "<<Operator<<" "<< n2;
 
 //perform calculation , based on the operator
 
-switch ( Operator )
-
-{
+switch ( Operator ){
 
 case '+' :
 
@@ -213,7 +205,6 @@ int main( )
 
 {
 
-while(true){
 
 char postfixExp[50] ;
 
@@ -223,8 +214,8 @@ cin.getline ( postfixExp, 50 ) ;
 
 postfix p(postfixExp);
 
-}
 
-return 0;
+
+//return 0;
 
 }
